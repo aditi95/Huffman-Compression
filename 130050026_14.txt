@@ -1,0 +1,26 @@
+In this assignment I have tried to compress data using Huffman encoding.
+Generally, every char is stored in atleat 8 bits. However, depending on 
+the frequencies of various characters, we can generate a binary tree whose 
+leaf nodes contain characters and the path from root to a leaf node 
+gives the code for character stored in that leaf node.
+
+We add '1' to the code every time we visit the right child and '0' otherwise.
+This gives a unique binary string for every character. First, nodes with every 
+character and its frequency are created and added to a priority queue. The top 2 
+element of the queue are taken out and a new node is created with these 2 elements 
+as its childrem and its frequency as the sum of frequencies of its children. These 
+new node is then inserted into the priority queue and the process is repeated until 
+there is only one node(the root) left. 
+In the resulting structure the most frequently appearing character has shortest path from root 
+and so on. Averaging over the frequency of characters and their code length, we get a shorter overall
+encoding of the file. We can decompress this data by parsing the string and traversing the tree 
+beginning from root. Take right for every '1' and left for '0'. On reaching a node, output its character
+and begin at the root again.
+
+INPUT: Any text file
+I have given 2 sample inputs
+i used 
+http://norvig.com/big.txt
+and some other big text file available on gutenberg project.
+OUTPUT: The encoding for all the characters appearing in the file 
+as well as the compression ratio.    
